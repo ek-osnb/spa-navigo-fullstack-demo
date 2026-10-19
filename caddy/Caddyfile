@@ -1,0 +1,12 @@
+# Caddyfile.dev
+{$DOMAIN} {
+    encode zstd gzip
+
+    handle /api/* {
+        reverse_proxy {$BACKEND_UPSTREAM}
+    }
+
+    handle {
+        reverse_proxy frontend:80
+    }
+}
